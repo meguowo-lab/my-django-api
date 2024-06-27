@@ -1,0 +1,6 @@
+- "python -m venv .venv" in project's parent folder
+- "pip install -r requirements.txt"
+- create .env file and fill it like .env.example with your data
+- cd to project folder
+- "python manage.py runserver"
+- be happy!
