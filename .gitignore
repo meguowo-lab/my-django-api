@@ -1,0 +1,6 @@
+.venv
+.env
+*.sqlite3
+.ruff_cache
+*.pyc
+restapi/media/images/*
