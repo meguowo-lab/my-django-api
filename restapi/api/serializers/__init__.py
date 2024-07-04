@@ -1,10 +1,10 @@
-from .base import BaseSerializer
 from .comment import CommentSerializer
 from .news import NewsSerializer
 from .user import UserSerializer
+from .with_user import WithUserSerializer
 
 __all__ = [
-    "BaseSerializer",
+    "WithUserSerializer",
     "CommentSerializer",
     "NewsSerializer",
     "UserSerializer",

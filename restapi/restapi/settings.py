@@ -17,6 +17,7 @@ from environ import Env
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 AUTH_USER_MODEL = "api.User"
+AUTH_USER_MANAGER = "api.UserManager"
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,7 +41,14 @@ env = Env()
 
 env.read_env(BASE_DIR / ".." / ".env")
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = (
+    "django.core.mail.backends.console.EmailBackend"
+    if DEBUG
+    else "django.core.mail.backends.smtp.EmailBackend"
+)
+
+EMAIL_TEMPLATE = "email_msg.html"
+
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_PORT = int(env("EMAIL_PORT"))
 EMAIL_USE_SSL = True

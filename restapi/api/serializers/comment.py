@@ -1,21 +1,17 @@
 from ..models import Comment
-from .base import BaseSerializer
 from .user import UserSerializer
+from .with_user import WithUserSerializer
 
 
-class CommentSerializer(BaseSerializer):
+class CommentSerializer(WithUserSerializer):
     user = UserSerializer(read_only=True)
-
-    def create(self, validated_data):
-        self.attach_user(validated_data)
-        return super().create(validated_data)
 
     def get_fields(self):
         fields = super().get_fields()
         if self.context["request"].method in ["UPDATE", "PUT"]:
-            fields.pop("news")
+            fields.pop("news_id")
         return fields
 
     class Meta:
         model = Comment
-        fields = ["id", "user", "news", "created_at", "body"]
+        fields = ["id", "user", "news_id", "created_at", "body"]

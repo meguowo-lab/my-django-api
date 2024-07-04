@@ -4,12 +4,12 @@ from rest_framework.viewsets import ModelViewSet
 from ..serializers import (
     UserSerializer,
 )
-from .permissions import AnonUserPost, same_user
+from .permissions import same_user
 
 
 class UserViewSet(ModelViewSet):
     queryset = get_user_model().objects.all().order_by("id")
-    permission_classes = [same_user(), AnonUserPost]
+    permission_classes = [same_user()]
 
     def get_serializer_class(self):
         return UserSerializer

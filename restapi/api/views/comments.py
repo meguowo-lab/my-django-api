@@ -19,5 +19,5 @@ class CommentViewSet(ModelViewSet):
         same_user("user"),
         EmailVerifiedOrReadOnly,
     ]
-    filterset_fields = ["user", "news", "id", "body", "created_at"]
+    filterset_fields = ["user_id", "news_id", "id", "body", "created_at"]
     filter_backends = [DjangoFilterBackend]

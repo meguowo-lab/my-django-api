@@ -14,6 +14,6 @@ from .permissions import same_user
 class NewsViewSet(ModelViewSet):
     queryset = News.objects.all().order_by("id")
     serializer_class = NewsSerializer
-    permission_classes = [DjangoModelPermissionsOrAnonReadOnly, same_user("user")]
-    filterset_fields = ["user", "id", "title", "body", "created_at"]
+    permission_classes = [DjangoModelPermissionsOrAnonReadOnly, same_user("user_id")]
+    filterset_fields = ["user_id", "id", "title", "body", "created_at"]
     filter_backends = [DjangoFilterBackend]

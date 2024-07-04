@@ -1,14 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as PwdValidationError
+from rest_framework.serializers import ModelSerializer
 from rest_framework.validators import ValidationError
-
-from .base import BaseSerializer
 
 user_model = get_user_model()
 
 
-class UserSerializer(BaseSerializer):
+class UserSerializer(ModelSerializer):
     def create(self, validated_data):
         password = validated_data.pop("password")
         user = super().create(validated_data)
@@ -35,7 +34,6 @@ class UserSerializer(BaseSerializer):
     def validate(self, attrs):
         if "password" in attrs.keys():
             user = user_model(**attrs)
-
             try:
                 validate_password(attrs["password"], user)
             except PwdValidationError as e:

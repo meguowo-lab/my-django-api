@@ -1,14 +1,10 @@
 from ..models import News
-from .base import BaseSerializer
 from .user import UserSerializer
+from .with_user import WithUserSerializer
 
 
-class NewsSerializer(BaseSerializer):
+class NewsSerializer(WithUserSerializer):
     user = UserSerializer(read_only=True)
-
-    def create(self, validated_data):
-        self.attach_user(validated_data)
-        return super().create(validated_data)
 
     class Meta:
         model = News

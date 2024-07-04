@@ -17,11 +17,10 @@ Including another URLconf
 
 """
 
+from api.views import router, verify_email_complete_view, verify_email_view
 from django.contrib import admin
 from django.contrib.auth import views
 from django.urls import include, path
-
-from api.views import router, verify_email_complete_view, verify_email_view
 
 reset_password_patterns = [
     path("", views.PasswordResetView.as_view()),
@@ -40,7 +39,7 @@ reset_password_patterns = [
 
 change_password_patterns = [
     path("", views.PasswordChangeView.as_view()),
-    path("done/", views.PasswordChangeDoneView.as_view()),
+    path("done/", views.PasswordChangeDoneView.as_view(), name="password_change_done"),
 ]
 
 auth_patterns = [
